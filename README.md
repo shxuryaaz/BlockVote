@@ -9,7 +9,7 @@ A decentralized voting application that enables secure and transparent participa
 
 ## Overview
 
-This application showcases how blockchain can be used for secure voting with one vote per user per proposal. Votes are recorded immutably on-chain and proposals are managed by an admin through a dedicated interface.
+This application showcases how blockchain can be used for secure voting with one vote per user per proposal. Votes are recorded on-chain and proposals are managed by an admin through a dashboard.
 
 **Features:**
 - MetaMask and Gmail-based login
@@ -27,7 +27,7 @@ This application showcases how blockchain can be used for secure voting with one
 To cast a vote or create a proposal, you must have a small amount of Sepolia ETH in your wallet (used to pay for gas fees).
 
 You can get free Sepolia ETH from this faucet:
-🔗 [https://sepoliafaucet.com/](https://sepoliafaucet.com/)
+🔗 [https://cloud.google.com/application/web3/faucet/ethereum/sepolia](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
 
 ---
 
