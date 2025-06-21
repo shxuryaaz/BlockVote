@@ -1,6 +1,6 @@
 # Blockchain Voting DApp
 
-A decentralized voting application that allows users to securely vote on proposals using their Ethereum wallets. Built on the Sepolia testnet, the project supports login via both MetaMask and Gmail-based authentication (which generates a BIP39 wallet on the fly). Admin users can create and manage proposals, while all verified users can cast votes with transparency and immutability ensured by smart contracts.
+A decentralized voting application that enables secure and transparent participation in polls using Ethereum smart contracts. Users can log in with MetaMask or Gmail (which creates a secure BIP39-based wallet) and vote on live proposals. Admins have special privileges to create and delete proposals.
 
 [![Live Site](https://img.shields.io/badge/Live-Netlify-brightgreen?style=flat-square&logo=netlify)](https://truthprevails.netlify.app)
 [![Contract: Sepolia](https://img.shields.io/badge/Contract-Sepolia-blueviolet?style=flat-square&logo=ethereum)](https://sepolia.etherscan.io/address/your_contract_address_here)
@@ -9,82 +9,91 @@ A decentralized voting application that allows users to securely vote on proposa
 
 ## Overview
 
-This application was developed to demonstrate how blockchain can be used to conduct secure and verifiable voting. Every user is limited to one vote per proposal, ensuring fairness. The admin panel allows for proposal creation and deletion, and all data is stored on-chain, making it tamper-proof.
+This application showcases how blockchain can be used for secure voting with one vote per user per proposal. Votes are recorded immutably on-chain and proposals are managed by an admin through a dedicated interface.
 
-Key highlights:
-- MetaMask and Gmail login options
-- Unique BIP39 wallet generation for Gmail users
-- Admin-only control for proposal creation and deletion
-- Live vote counts with responsive UI
-- Deployed using Netlify and Alchemy RPC on the Sepolia testnet
+**Features:**
+- MetaMask and Gmail-based login
+- BIP39 wallet generation for Gmail users
+- Proposal creation and deletion (admin-only)
+- One-vote-per-user enforcement
+- Real-time results display
+- Responsive design with dark UI
+- Hosted on Netlify, connected to Sepolia via Alchemy
+
+---
+
+## 💰 Get Sepolia ETH
+
+To cast a vote or create a proposal, you must have a small amount of Sepolia ETH in your wallet (used to pay for gas fees).
+
+You can get free Sepolia ETH from this faucet:
+🔗 [https://sepoliafaucet.com/](https://sepoliafaucet.com/)
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React.js, HTML, CSS (no UI frameworks)
+- **Frontend:** React.js, HTML, CSS (no Tailwind or frameworks)
 - **Blockchain:** Solidity, Hardhat, Ethers.js
-- **Auth & Wallet:** Firebase Authentication, BIP39, MetaMask
-- **Deployment:** Netlify (frontend), Alchemy + Sepolia (backend)
+- **Authentication & Wallets:** Firebase Auth, BIP39, MetaMask
+- **Deployment:** Netlify (frontend), Alchemy RPC (Sepolia network)
 
 ---
 
 ## Setup Instructions
 
-1. **Clone the repo:**
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/your-username/blockchain-voting-dapp.git
 cd blockchain-voting-dapp/client
 npm install
 ```
 
-2. **Configure environment variables:**
-Create a `.env` file inside the `/client` directory:
-
+2. **Create a `.env` file in `/client` folder:**
 ```env
 # Firebase
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 
-# Ethereum (Sepolia)
+# Ethereum
 REACT_APP_SEPOLIA_RPC=https://eth-sepolia.g.alchemy.com/v2/your_key
 REACT_APP_CONTRACT_ADDRESS=your_contract_address
 ```
 
-3. **Start the app locally:**
+3. **Start the app:**
 ```bash
 npm start
 ```
 
-4. **Build for production:**
+4. **Build for deployment:**
 ```bash
 npm run build
 ```
 
 ---
 
-## Smart Contract Summary
+## Smart Contract Functions
 
-- `createProposal()` – Admin-only; adds a new proposal.
-- `vote()` – Public; allows one vote per user per proposal.
-- `deleteProposal()` – Admin-only; removes a proposal.
-- `getProposal()` – Retrieves full proposal details.
-- `hasVoted()` – Verifies if a user has already voted.
+- `createProposal(question, options[])` – Add a new proposal (admin only)
+- `vote(proposalId, optionIndex)` – Vote on a proposal (one vote per user)
+- `deleteProposal(proposalId)` – Remove an existing proposal (admin only)
+- `getProposal(proposalId)` – Fetch details of a proposal
+- `hasVoted(proposalId, userAddress)` – Check voting status of a user
 
 ---
 
-## Live Application
+## Live Demo
 
-Check out the deployed app here:  
-👉 [truthprevails.netlify.app](https://truthprevails.netlify.app)
+Access the full application here:  
+🌐 [truthprevails.netlify.app](https://truthprevails.netlify.app)
 
 ---
 
 ## Maintainer
 
 **Shaurya Singh**  
-[LinkedIn Profile](https://www.linkedin.com/in/shauryasingh28/)
+[LinkedIn](https://www.linkedin.com/in/shauryasingh28/)
 
 ---
 
