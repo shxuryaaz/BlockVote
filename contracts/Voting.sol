@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract Voting {
@@ -8,11 +7,10 @@ contract Voting {
         string question;
         string[] options;
         uint[] voteCounts;
+        bool isActive;
     }
 
     Proposal[] public proposals;
-
-    // Tracks if a user has voted on a specific proposal: hasVoted[proposalId][voterAddress] => true/false
     mapping(uint => mapping(address => bool)) public hasVoted;
 
     constructor() {
@@ -24,47 +22,68 @@ contract Voting {
         _;
     }
 
-    // Create a new proposal
+    modifier proposalExists(uint _id) {
+        require(_id < proposals.length, "Invalid proposal ID");
+        _;
+    }
+
+    event ProposalCreated(uint indexed proposalId, string question);
+    event Voted(uint indexed proposalId, address indexed voter, uint optionIndex);
+    event ProposalClosed(uint indexed proposalId);
+    event AdminTransferred(address indexed oldAdmin, address indexed newAdmin);
+
     function createProposal(string memory _question, string[] memory _options) public onlyAdmin {
         require(bytes(_question).length > 0, "Question cannot be empty");
         require(_options.length >= 2, "At least two options required");
 
-        Proposal storage newProposal = proposals.push();
-        newProposal.question = _question;
-        newProposal.options = _options;
-        newProposal.voteCounts = new uint[](_options.length);
+        Proposal storage p = proposals.push();
+        p.question = _question;
+        p.options = _options;
+        p.voteCounts = new uint[](_options.length);
+        p.isActive = true;
+
+        emit ProposalCreated(proposals.length - 1, _question);
     }
 
-    // Vote on a proposal
-    function vote(uint _proposalId, uint _optionIndex) public {
-        require(_proposalId < proposals.length, "Invalid proposal ID");
-        require(!hasVoted[_proposalId][msg.sender], "You have already voted on this proposal");
+    function vote(uint _proposalId, uint _optionIndex) public proposalExists(_proposalId) {
+        Proposal storage p = proposals[_proposalId];
+        require(p.isActive, "Voting is closed");
+        require(!hasVoted[_proposalId][msg.sender], "Already voted");
+        require(_optionIndex < p.options.length, "Invalid option");
 
-        Proposal storage proposal = proposals[_proposalId];
-        require(_optionIndex < proposal.options.length, "Invalid option");
-
-        proposal.voteCounts[_optionIndex]++;
+        p.voteCounts[_optionIndex]++;
         hasVoted[_proposalId][msg.sender] = true;
+
+        emit Voted(_proposalId, msg.sender, _optionIndex);
     }
 
-    // Get total number of proposals
     function getProposalsCount() public view returns (uint) {
         return proposals.length;
     }
 
-    // Get proposal by ID
-    function getProposal(uint _proposalId) public view returns (
-        string memory question,
-        string[] memory options,
-        uint[] memory voteCounts
+    function getProposal(uint _proposalId) public view proposalExists(_proposalId) returns (
+        string memory,
+        string[] memory,
+        uint[] memory,
+        bool
     ) {
-        require(_proposalId < proposals.length, "Invalid proposal ID");
-        Proposal storage proposal = proposals[_proposalId];
-        return (proposal.question, proposal.options, proposal.voteCounts);
+        Proposal storage p = proposals[_proposalId];
+        return (p.question, p.options, p.voteCounts, p.isActive);
     }
 
-    // Check if a user has voted on a specific proposal
     function hasVotedOn(uint _proposalId, address _voter) public view returns (bool) {
         return hasVoted[_proposalId][_voter];
+    }
+
+    function closeProposal(uint _proposalId) public onlyAdmin proposalExists(_proposalId) {
+        proposals[_proposalId].isActive = false;
+        emit ProposalClosed(_proposalId);
+    }
+
+    function transferAdmin(address newAdmin) public onlyAdmin {
+        require(newAdmin != address(0), "Invalid address");
+        address old = admin;
+        admin = newAdmin;
+        emit AdminTransferred(old, newAdmin);
     }
 }
