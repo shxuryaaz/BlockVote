@@ -3,7 +3,7 @@
 A decentralized voting application that enables secure and transparent participation in polls using Ethereum smart contracts. Users can log in with MetaMask or Gmail (which creates a secure BIP39-based wallet) and vote on live proposals. Admins have special privileges to create and delete proposals.
 
 [![Live Site](https://img.shields.io/badge/Live-Netlify-brightgreen?style=flat-square&logo=netlify)](https://truthprevails.netlify.app)
-[![Contract: Sepolia](https://img.shields.io/badge/Contract-Sepolia-blueviolet?style=flat-square&logo=ethereum)](https://sepolia.etherscan.io/address/your_contract_address_here)
+[![Contract: Sepolia](https://img.shields.io/badge/Contract-Sepolia-blueviolet?style=flat-square&logo=ethereum)](https://sepolia.etherscan.io/address/0x4B4BB678E24e141362166575548ccC2dc954C8cf)
 
 ---
 
@@ -22,7 +22,7 @@ This application showcases how blockchain can be used for secure voting with one
 
 ---
 
-## 💰 Get Sepolia ETH
+## Get Sepolia ETH
 
 To cast a vote or create a proposal, you must have a small amount of Sepolia ETH in your wallet (used to pay for gas fees).
 
@@ -86,17 +86,13 @@ npm run build
 ## Live Demo
 
 Access the full application here:  
-🌐 [truthprevails.netlify.app](https://truthprevails.netlify.app)
+[truthprevails.netlify.app](https://truthprevails.netlify.app)
 
 ---
 
-## Maintainer
+## Developed and Mantained by 
 
 **Shaurya Singh**  
 [LinkedIn](https://www.linkedin.com/in/shauryasingh28/)
 
----
 
-## License
-
-MIT License
