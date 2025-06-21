@@ -74,7 +74,7 @@ REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 
 # Ethereum
 REACT_APP_SEPOLIA_RPC=https://eth-sepolia.g.alchemy.com/v2/your_key
-REACT_APP_CONTRACT_ADDRESS=0x4B4BB678E24e141362166575548ccC2dc954C8cf
+REACT_APP_CONTRACT_ADDRESS=your_contract_address
 ```
 
 ### 3. Run the project
