@@ -1,32 +1,36 @@
 # Blockchain Voting DApp
 
-A decentralized voting platform that enables users to vote securely on proposals using either MetaMask or Gmail authentication. Built with React, Solidity, and Firebase, the application enforces one vote per user and provides admin controls for managing proposals.
+A decentralized voting platform that enables secure and transparent proposal voting on the Ethereum blockchain. Users can authenticate via MetaMask or Gmail (which generates a BIP39-based Ethereum wallet). Admin users can create and delete proposals. The app runs on the Ethereum Sepolia testnet and features a clean, minimalist UI.
+
+[![Live on Netlify](https://img.shields.io/badge/Live%20Site-Netlify-brightgreen?style=flat-square&logo=netlify)](https://truthprevails.netlify.app)
+[![Deployed on Sepolia](https://img.shields.io/badge/Smart%20Contract-Sepolia-blueviolet?style=flat-square&logo=ethereum)](https://sepolia.etherscan.io/address/your_contract_address_here)
 
 ---
 
 ## Features
 
-- Dual authentication: MetaMask and Gmail (via Firebase Auth)
-- BIP39 mnemonic-based wallet generation for Gmail-authenticated users
-- Proposal creation and voting on the Ethereum Sepolia testnet
-- One vote per user per proposal (enforced on-chain)
-- Admin-only ability to create and delete proposals
-- Copyable wallet address for ease of use
-- Clean, responsive UI with a custom dark mode design
+- MetaMask and Gmail login support
+- BIP39 mnemonic wallet generation for Gmail users
+- One vote per user per proposal
+- Admin-only proposal creation and deletion
+- Copy-to-clipboard wallet address
+- Live proposal vote counts
+- Clean dark mode interface
+- Netlify deployment
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React.js, HTML, CSS, Ethers.js
-- **Authentication:** Firebase Authentication (Gmail login), MetaMask
-- **Wallet Management:** BIP39-based Ethereum wallet generation
-- **Blockchain:** Ethereum Sepolia Testnet, Solidity (Smart Contracts)
-- **Build Tools:** CRACO, dotenv, Hardhat
+- **Frontend:** React.js, HTML, Vanilla CSS
+- **Blockchain:** Solidity, Hardhat, Ethers.js
+- **Authentication:** Firebase Auth (Gmail), MetaMask
+- **Wallets:** BIP39 + `ethereumjs-wallet`
+- **Deployment:** Netlify (Frontend), Alchemy (RPC), Sepolia Testnet
 
 ---
 
-## Installation
+## Getting Started
 
 ```bash
 git clone https://github.com/your-username/blockchain-voting-dapp.git
@@ -34,26 +38,26 @@ cd blockchain-voting-dapp/client
 npm install
 ```
 
-### Environment Configuration
-
-Create a `.env` file inside the `client/` directory and add the following:
+Create a `.env` file inside the `client/` folder:
 
 ```env
-REACT_APP_FIREBASE_API_KEY=your_firebase_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+# Firebase
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 
-REACT_APP_SEPOLIA_RPC=https://eth-sepolia.g.alchemy.com/v2/your_alchemy_key
-REACT_APP_CONTRACT_ADDRESS=your_smart_contract_address
+# Ethereum
+REACT_APP_SEPOLIA_RPC=https://eth-sepolia.g.alchemy.com/v2/your_key
+REACT_APP_CONTRACT_ADDRESS=your_contract_address
 ```
 
-### Run Locally
+Run locally:
 
 ```bash
 npm start
 ```
 
-### Build for Production
+Build for production:
 
 ```bash
 npm run build
@@ -61,35 +65,44 @@ npm run build
 
 ---
 
-## Smart Contract Overview
+## Smart Contract Functions
 
-The Solidity smart contract provides the following functionality:
+- `createProposal(string question, string[] options)`  
+  Admin-only; creates a new voting proposal.
 
-- `createProposal(string question, string[] options)` — Admin-only
-- `vote(uint proposalId, uint optionIndex)` — Single vote per proposal
-- `deleteProposal(uint proposalId)` — Admin-only
-- `getProposal(uint proposalId)` and `getProposalsCount()` — For frontend data
-- `hasVoted(uint proposalId, address voter)` — Check vote status
+- `vote(uint proposalId, uint optionIndex)`  
+  Allows a single vote per user per proposal.
 
-The contract uses `mapping` to enforce single-vote-per-user logic per proposal.
+- `deleteProposal(uint proposalId)`  
+  Admin-only; removes an existing proposal.
+
+- `getProposal(uint proposalId)`  
+  Fetches full proposal details.
+
+- `hasVoted(uint proposalId, address voter)`  
+  Checks if a user has already voted.
 
 ---
 
-## Deployment
+## Project Overview
 
-- Frontend built using React and deployed via Netlify
-- Smart contracts deployed on the Ethereum Sepolia Testnet
-- Uses environment variables for secure configuration
+This application implements decentralized governance through on-chain voting, flexible wallet access via MetaMask or BIP39-based mnemonics, and admin-gated smart contract logic. The frontend is built from scratch without UI libraries and is deployed on the Ethereum Sepolia testnet.
+
+---
+
+## Live Project
+
+[https://truthprevails.netlify.app](https://truthprevails.netlify.app)
 
 ---
 
 ## Author
 
-Shaurya Singh  
-[GitHub](https://github.com/your-username) | [LinkedIn](https://linkedin.com/in/your-profile)
+**Shaurya Singh**  
+[LinkedIn](https://www.linkedin.com/in/shauryasingh28/)
 
 ---
 
 ## License
 
-This project is licensed under the MIT License.
+MIT
