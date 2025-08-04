@@ -36,7 +36,7 @@ This project demonstrates how blockchain can be utilized to facilitate secure, t
 ![Admin Dashboard](https://i.ibb.co/DD2sBBgb/admin-page.png)
 
 **User Dashboard**  
-![User Dashboard](https://i.ibb.co/jvQ40trW/image.png)
+![User Dashboard](https://i.ibb.co/ymB4ZNDb/dashbaord.png)
 
 
 ## Get Sepolia ETH
