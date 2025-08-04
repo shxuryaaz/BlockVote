@@ -30,7 +30,7 @@ This project demonstrates how blockchain can be utilized to facilitate secure, t
 ## Screenshots
 
 **Landing Page**  
-![Login Page](https://i.ibb.co/zV8RBSf2/login-page.png)
+![Login Page](https://i.ibb.co/mQZTMrR/image.png)
 
 **Admin Dashboard**  
 ![Admin Dashboard](https://i.ibb.co/DD2sBBgb/admin-page.png)
